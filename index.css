@@ -268,3 +268,64 @@ p:hover::before {
     background: rgba(76, 201, 240, 0.25);
     color: #ffffff;
 }
+
+
+
+
+/* =========================================================
+   FUTURISTIC POLICY TITLE (FIRST CARD ONLY)
+   ========================================================= */
+
+.policy-intro {
+    position: relative;
+}
+
+.policy-title {
+    position: absolute;
+    top: 28px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+}
+
+.policy-title span {
+    font-size: 0.95rem;
+    letter-spacing: 4px;
+    font-weight: 600;
+    padding: 6px 18px;
+    border-radius: 999px;
+
+    background: linear-gradient(
+        90deg,
+        var(--accent-primary),
+        var(--accent-secondary)
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+
+    text-shadow:
+        0 0 8px rgba(76, 201, 240, 0.35),
+        0 0 16px rgba(157, 78, 221, 0.25);
+}
+
+/* glowing underline behind text */
+.policy-title::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 90px;
+    height: 2px;
+    transform: translate(-50%, 50%);
+    background: linear-gradient(
+        90deg,
+        var(--accent-primary),
+        var(--accent-secondary)
+    );
+    border-radius: 2px;
+    box-shadow:
+        0 0 10px var(--accent-glow),
+        0 0 20px var(--accent-glow);
+}
+
