@@ -1,71 +1,38 @@
 /* ============================================================
-   PREMIUM FUTURISTIC DARK CSS (VERTICAL FIXED LAYOUT)
-   Guaranteed vertical stacking – no horizontal drift
+   ABSOLUTE VERTICAL OVERRIDE — GITHUB PAGES SAFE
+   This FORCEFULLY disables horizontal layouts
    ============================================================ */
 
-/* -------------------------
-   RESET
-------------------------- */
+/* ---------- RESET ---------- */
 *,
-*::before, 
+*::before,
 *::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* -------------------------
-   ROOT VARIABLES
-------------------------- */
-:root {
-    --bg-main: #0a0f1c;
-    --bg-card: rgba(18, 24, 44, 0.85);
-    --bg-card-hover: rgba(24, 32, 64, 0.95);
-
-    --border-soft: rgba(255, 255, 255, 0.08);
-    --border-accent: rgba(70, 200, 255, 0.35);
-
-    --text-main: #e6ebff;
-    --text-secondary: #b8c0e0;
-    --text-muted: #8b93b8;
-
-    --accent-cyan: #46e0ff;
-    --accent-purple: #b388ff;
-
-    --shadow-main: 0 20px 45px rgba(0, 0, 0, 0.55);
-    --shadow-glow: 0 0 40px rgba(70, 200, 255, 0.18);
-
-    --radius-lg: 18px;
-    --radius-md: 14px;
-
-    --transition: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-/* -------------------------
-   BODY
-------------------------- */
+/* ---------- BODY ---------- */
 body {
     min-height: 100vh;
-    font-family: "Inter", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-family: Inter, Segoe UI, Roboto, Arial, sans-serif;
     background:
-        radial-gradient(900px 500px at 15% -10%, rgba(70, 200, 255, 0.15), transparent 40%),
-        radial-gradient(900px 500px at 85% 10%, rgba(180, 120, 255, 0.12), transparent 45%),
-        linear-gradient(180deg, #0a0f1c 0%, #060812 100%);
-    color: var(--text-main);
+        radial-gradient(800px 400px at 10% -10%, rgba(70,200,255,0.15), transparent 40%),
+        radial-gradient(800px 400px at 90% 10%, rgba(160,120,255,0.12), transparent 45%),
+        linear-gradient(180deg, #090d18, #05070e);
+    color: #e6ebff;
     line-height: 1.8;
     overflow-x: hidden;
 }
 
-/* -------------------------
-   HEADER
-------------------------- */
+/* ---------- HEADER ---------- */
 .page-header {
     position: sticky;
     top: 0;
-    z-index: 20;
-    backdrop-filter: blur(16px);
-    background: rgba(10, 14, 30, 0.85);
-    border-bottom: 1px solid var(--border-soft);
+    z-index: 10;
+    background: rgba(10,14,30,0.85);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
 }
 
 .policy-title {
@@ -76,101 +43,63 @@ body {
 }
 
 .policy-title span {
-    font-size: clamp(1.6rem, 3vw, 2.4rem);
+    font-size: 2rem;
     font-weight: 700;
     letter-spacing: 0.4em;
-    color: var(--accent-cyan);
-    text-shadow:
-        0 0 14px rgba(70, 200, 255, 0.45),
-        0 0 40px rgba(70, 200, 255, 0.2);
+    color: #46e0ff;
 }
 
-/* -------------------------
-   MAIN CONTAINER
-   (IMPORTANT FIX)
-------------------------- */
+/* ============================================================
+   🔥 HARD LAYOUT RESET (THIS FIXES YOUR ISSUE)
+   ============================================================ */
+
+/* Kill grid, inline, float, column behavior */
+.policy-container,
+.policy-container * {
+    float: none !important;
+    clear: both !important;
+}
+
+/* FORCE VERTICAL FLOW */
 .policy-container {
     max-width: 900px;
     margin: 0 auto;
-    padding: 64px 20px 100px;
+    padding: 60px 20px 100px;
 
-    /* FORCE VERTICAL FLOW */
-    display: flex;
-    flex-direction: column;
-    gap: 32px;
+    display: block !important;
 }
 
-/* -------------------------
-   POLICY CARD
-------------------------- */
+/* EVERY SECTION = FULL WIDTH BLOCK */
+.policy-container > section {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-bottom: 32px;
+}
+
+/* ---------- CARD ---------- */
 .policy-card {
-    width: 100%;
-    display: block;
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
 
     background: linear-gradient(
         180deg,
-        rgba(22, 28, 52, 0.85),
-        rgba(14, 18, 36, 0.95)
+        rgba(22,28,52,0.9),
+        rgba(14,18,36,0.95)
     );
 
-    border-radius: var(--radius-lg);
-    padding: 32px 34px;
-    border: 1px solid var(--border-soft);
-    box-shadow: var(--shadow-main);
-
-    position: relative;
-    overflow: hidden;
-
-    transition:
-        transform var(--transition),
-        box-shadow var(--transition),
-        border var(--transition),
-        background var(--transition);
+    border-radius: 18px;
+    padding: 32px;
+    border: 1px solid rgba(255,255,255,0.08);
+    box-shadow: 0 20px 45px rgba(0,0,0,0.55);
 }
 
-/* Glow edge */
-.policy-card::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    border-radius: inherit;
-    background:
-        linear-gradient(
-            120deg,
-            transparent,
-            rgba(70, 200, 255, 0.35),
-            transparent
-        );
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity var(--transition);
-}
-
-/* Hover */
-.policy-card:hover {
-    transform: translateY(-6px);
-    background: linear-gradient(
-        180deg,
-        rgba(28, 36, 72, 0.95),
-        rgba(18, 24, 52, 0.98)
-    );
-    border-color: var(--border-accent);
-    box-shadow:
-        0 30px 70px rgba(0, 0, 0, 0.65),
-        var(--shadow-glow);
-}
-
-.policy-card:hover::before {
-    opacity: 1;
-}
-
-/* -------------------------
-   TEXT
-------------------------- */
+/* ---------- TEXT ---------- */
 .policy-card p {
+    color: #b8c0e0;
     font-size: 1rem;
-    color: var(--text-secondary);
-    margin-bottom: 18px;
+    margin-bottom: 16px;
 }
 
 .policy-card p:last-child {
@@ -178,123 +107,46 @@ body {
 }
 
 .policy-card strong {
-    color: var(--text-main);
+    color: #ffffff;
 }
 
-/* -------------------------
-   HEADINGS
-------------------------- */
+/* ---------- HEADINGS ---------- */
 .policy-card h3 {
     font-size: 1.25rem;
-    font-weight: 600;
-    color: var(--text-main);
     margin-bottom: 18px;
-    padding-left: 14px;
+    padding-left: 12px;
     position: relative;
+    color: #ffffff;
 }
 
 .policy-card h3::before {
     content: "";
     position: absolute;
     left: 0;
-    top: 0.15em;
+    top: 0.2em;
     width: 4px;
     height: 1.2em;
-    background: linear-gradient(
-        180deg,
-        var(--accent-cyan),
-        var(--accent-purple)
-    );
-    border-radius: 2px;
-    box-shadow: 0 0 12px rgba(70, 200, 255, 0.6);
+    background: linear-gradient(180deg, #46e0ff, #b388ff);
 }
 
-/* -------------------------
-   FOOTER CARD
-------------------------- */
+/* ---------- FOOTER ---------- */
 .policy-footer {
     text-align: center;
-    background: linear-gradient(
-        180deg,
-        rgba(20, 26, 50, 0.95),
-        rgba(12, 16, 34, 1)
-    );
 }
 
 .policy-footer p {
     font-size: 0.95rem;
-    color: var(--text-muted);
+    color: #8b93b8;
 }
 
-/* -------------------------
-   RESPONSIVE
-------------------------- */
+/* ---------- MOBILE ---------- */
 @media (max-width: 768px) {
-    .policy-container {
-        padding: 48px 16px 80px;
-        gap: 26px;
-    }
-
     .policy-card {
-        padding: 26px 22px;
-        border-radius: var(--radius-md);
+        padding: 24px;
     }
 
-    .policy-card h3 {
-        font-size: 1.15rem;
-    }
-
-    .policy-card p {
-        font-size: 0.95rem;
+    .policy-title span {
+        font-size: 1.6rem;
+        letter-spacing: 0.3em;
     }
 }
-
-/* -------------------------
-   SCROLLBAR
-------------------------- */
-::-webkit-scrollbar {
-    width: 10px;
-}
-
-::-webkit-scrollbar-track {
-    background: #060812;
-}
-
-::-webkit-scrollbar-thumb {
-    background: linear-gradient(
-        180deg,
-        var(--accent-cyan),
-        var(--accent-purple)
-    );
-    border-radius: 10px;
-}
-
-/* -------------------------
-   SELECTION
-------------------------- */
-::selection {
-    background: rgba(70, 200, 255, 0.35);
-    color: #ffffff;
-}
-
-/* -------------------------
-   SUBTLE BACKGROUND NOISE
-------------------------- */
-body::after {
-    content: "";
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    background-image:
-        linear-gradient(
-            rgba(255, 255, 255, 0.02) 1px,
-            transparent 1px
-        );
-    background-size: 3px 3px;
-    opacity: 0.12;
-    z-index: 1;
-}
-
-/* ============================================================
-   END – VERTICAL, PREMIUM, FUTURISTIC DARK
-   ============================================================ */
