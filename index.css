@@ -1,215 +1,363 @@
 /* ============================================================
-   HORIZONTAL FUTURISTIC POLICY UI
-   Style: Dense / Dark / Architectural
-   Layout: Horizontal Rail
+   PREMIUM FUTURISTIC DARK CSS
+   Designed for the provided Privacy Policy HTML
+   Authoritative, modern, glassy, slightly futuristic, darkish
    ============================================================ */
 
-
 /* -------------------------
-   ROOT VARIABLES
+   CSS RESET & BASE SETUP
 ------------------------- */
-:root {
-    --bg-main: #05070b;
-    --bg-panel: rgba(255, 255, 255, 0.045);
 
-    --accent-cyan: #38bdf8;
-    --accent-violet: #7c3aed;
-
-    --text-main: #e5e7eb;
-    --text-dim: #9ca3af;
-
-    --border-soft: rgba(255, 255, 255, 0.14);
-
-    --radius: 16px;
-
-    --blur: blur(14px);
-
-    --shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
-}
-
-
-/* -------------------------
-   RESET
-------------------------- */
-* {
+*,
+*::before,
+*::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
 
-/* -------------------------
-   BODY
-------------------------- */
 body {
     min-height: 100vh;
-    font-family: "Inter", system-ui, sans-serif;
+    font-family: "Inter", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     background:
-        radial-gradient(circle at top right, rgba(124, 58, 237, 0.15), transparent 40%),
-        linear-gradient(180deg, #03050a, #0a0d16);
-    color: var(--text-main);
-    overflow: hidden;
+        radial-gradient(1200px 600px at 10% -10%, rgba(0, 140, 255, 0.12), transparent 40%),
+        radial-gradient(1000px 500px at 90% 10%, rgba(180, 0, 255, 0.10), transparent 45%),
+        linear-gradient(180deg, #0b0f1a 0%, #090c14 40%, #070910 100%);
+    color: #e6e9f0;
+    line-height: 1.75;
+    letter-spacing: 0.2px;
+    overflow-x: hidden;
 }
 
+/* -------------------------
+   ROOT VARIABLES
+------------------------- */
+
+:root {
+    --bg-main: #0b0f1a;
+    --bg-card: rgba(18, 22, 38, 0.75);
+    --bg-card-hover: rgba(22, 28, 50, 0.9);
+
+    --border-soft: rgba(255, 255, 255, 0.08);
+    --border-glow: rgba(0, 180, 255, 0.35);
+
+    --text-primary: #e6e9f0;
+    --text-secondary: #b8c0d9;
+    --text-muted: #8a92b2;
+
+    --accent-cyan: #3fdcff;
+    --accent-purple: #b36bff;
+    --accent-blue: #4f7cff;
+
+    --shadow-soft: 0 20px 40px rgba(0, 0, 0, 0.45);
+    --shadow-glow: 0 0 40px rgba(63, 220, 255, 0.15);
+
+    --radius-lg: 18px;
+    --radius-md: 14px;
+    --radius-sm: 10px;
+
+    --transition-fast: 0.25s ease;
+    --transition-med: 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+    --transition-slow: 0.8s ease;
+}
 
 /* -------------------------
-   HEADER
+   PAGE HEADER
 ------------------------- */
+
 .page-header {
-    padding: 36px 48px;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    backdrop-filter: blur(18px);
+    background: linear-gradient(
+        180deg,
+        rgba(10, 14, 30, 0.85) 0%,
+        rgba(10, 14, 30, 0.65) 100%
+    );
     border-bottom: 1px solid var(--border-soft);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
 }
 
+.policy-title {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 28px 24px;
+    text-align: center;
+}
 
-/* -------------------------
-   TITLE
-------------------------- */
 .policy-title span {
-    font-size: 1.6rem;
+    display: inline-block;
+    font-size: clamp(1.6rem, 3vw, 2.4rem);
+    font-weight: 700;
     letter-spacing: 0.45em;
-    font-weight: 500;
-    color: transparent;
-    background:
-        linear-gradient(90deg, var(--accent-cyan), var(--accent-violet));
-    background-clip: text;
-    -webkit-background-clip: text;
+    color: var(--accent-cyan);
+    text-shadow:
+        0 0 12px rgba(63, 220, 255, 0.45),
+        0 0 40px rgba(63, 220, 255, 0.15);
+    position: relative;
 }
 
+.policy-title span::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -12px;
+    width: 60%;
+    height: 2px;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        var(--accent-cyan),
+        transparent
+    );
+    transform: translateX(-50%);
+    opacity: 0.7;
+}
 
 /* -------------------------
    MAIN CONTAINER
 ------------------------- */
+
 .policy-container {
-    height: calc(100vh - 120px);
-    display: flex;
-    flex-direction: row;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 64px 24px 100px;
+    display: grid;
+    grid-template-columns: 1fr;
     gap: 28px;
-    padding: 40px 48px;
-    overflow-x: auto;
-    overflow-y: hidden;
-    scroll-snap-type: x mandatory;
 }
-
 
 /* -------------------------
-   SCROLLBAR
+   POLICY CARD BASE
 ------------------------- */
-.policy-container::-webkit-scrollbar {
-    height: 6px;
-}
 
-.policy-container::-webkit-scrollbar-thumb {
-    background: linear-gradient(
-        90deg,
-        var(--accent-cyan),
-        var(--accent-violet)
-    );
-    border-radius: 10px;
-}
-
-
-/* -------------------------
-   POLICY CARD
-------------------------- */
 .policy-card {
-    min-width: 360px;
-    max-width: 420px;
-    height: 100%;
-    padding: 28px 30px;
-    background: var(--bg-panel);
-    backdrop-filter: var(--blur);
-    border: 1px solid var(--border-soft);
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
-    display: flex;
-    align-items: center;
-    scroll-snap-align: start;
     position: relative;
+    background: linear-gradient(
+        180deg,
+        rgba(24, 30, 52, 0.65),
+        rgba(18, 22, 38, 0.85)
+    );
+    backdrop-filter: blur(22px);
+    border-radius: var(--radius-lg);
+    padding: 32px 36px;
+    border: 1px solid var(--border-soft);
+    box-shadow: var(--shadow-soft);
+    transition:
+        transform var(--transition-med),
+        box-shadow var(--transition-med),
+        background var(--transition-med),
+        border var(--transition-med);
+    overflow: hidden;
 }
 
-
-/* -------------------------
-   CARD DIVIDER LINE
-------------------------- */
+/* Subtle animated glow border */
 .policy-card::before {
     content: "";
     position: absolute;
-    top: 14%;
-    left: 0;
-    width: 3px;
-    height: 72%;
-    background:
-        linear-gradient(
-            180deg,
-            transparent,
-            var(--accent-cyan),
-            var(--accent-violet),
-            transparent
-        );
-    border-radius: 3px;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(
+        120deg,
+        transparent,
+        rgba(63, 220, 255, 0.25),
+        transparent
+    );
+    mask:
+        linear-gradient(#000 0 0) content-box,
+        linear-gradient(#000 0 0);
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity var(--transition-med);
 }
 
+/* Hover effects */
+.policy-card:hover {
+    transform: translateY(-6px);
+    background: linear-gradient(
+        180deg,
+        rgba(28, 36, 68, 0.8),
+        rgba(20, 26, 48, 0.95)
+    );
+    border-color: rgba(63, 220, 255, 0.35);
+    box-shadow:
+        0 30px 60px rgba(0, 0, 0, 0.55),
+        var(--shadow-glow);
+}
+
+.policy-card:hover::before {
+    opacity: 1;
+}
 
 /* -------------------------
-   CARD TEXT
+   TEXT STYLES
 ------------------------- */
+
 .policy-card p {
-    font-size: 0.95rem;
-    line-height: 1.75;
-    color: var(--text-main);
+    font-size: 1rem;
+    color: var(--text-secondary);
+    margin-bottom: 18px;
 }
 
+.policy-card p:last-child {
+    margin-bottom: 0;
+}
+
+.policy-card strong {
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+.policy-card h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 16px;
+    position: relative;
+    padding-left: 14px;
+}
+
+/* Futuristic heading accent */
+.policy-card h3::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.15em;
+    width: 4px;
+    height: 1.2em;
+    background: linear-gradient(
+        180deg,
+        var(--accent-cyan),
+        var(--accent-purple)
+    );
+    border-radius: 2px;
+    box-shadow: 0 0 12px rgba(63, 220, 255, 0.6);
+}
+
+/* -------------------------
+   BULLET-LIKE TEXT
+------------------------- */
+
+.policy-card p br {
+    line-height: 2.1;
+}
 
 /* -------------------------
    FOOTER CARD
 ------------------------- */
+
 .policy-footer {
-    justify-content: center;
     text-align: center;
-    min-width: 260px;
+    background: linear-gradient(
+        180deg,
+        rgba(20, 24, 44, 0.85),
+        rgba(14, 18, 34, 0.95)
+    );
 }
 
-
-/* -------------------------
-   FOOTER TEXT
-------------------------- */
 .policy-footer p {
-    font-size: 0.75rem;
-    letter-spacing: 0.3em;
-    color: var(--text-dim);
-    text-transform: uppercase;
+    font-size: 0.95rem;
+    color: var(--text-muted);
 }
-
 
 /* -------------------------
-   HOVER INTERACTION
+   RESPONSIVE DESIGN
 ------------------------- */
-.policy-card {
-    transition: transform 0.35s ease, border 0.35s ease;
-}
 
-.policy-card:hover {
-    transform: translateY(-6px);
-    border-color: rgba(255, 255, 255, 0.3);
-}
-
-
-/* -------------------------
-   MOBILE FALLBACK
-------------------------- */
-@media (max-width: 768px) {
-    body {
-        overflow: auto;
-    }
-
+@media (max-width: 900px) {
     .policy-container {
-        flex-direction: column;
-        height: auto;
-        overflow-x: hidden;
+        padding: 48px 20px 80px;
     }
 
     .policy-card {
-        min-width: unset;
-        max-width: unset;
+        padding: 28px 26px;
     }
 }
+
+@media (max-width: 600px) {
+    .policy-title span {
+        letter-spacing: 0.3em;
+    }
+
+    .policy-card {
+        padding: 24px 20px;
+        border-radius: var(--radius-md);
+    }
+
+    .policy-card h3 {
+        font-size: 1.15rem;
+    }
+
+    .policy-card p {
+        font-size: 0.95rem;
+    }
+}
+
+/* -------------------------
+   SCROLLBAR STYLING
+------------------------- */
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #070910;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(
+        180deg,
+        var(--accent-cyan),
+        var(--accent-purple)
+    );
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(
+        180deg,
+        #5be7ff,
+        #c28bff
+    );
+}
+
+/* -------------------------
+   SELECTION
+------------------------- */
+
+::selection {
+    background: rgba(63, 220, 255, 0.35);
+    color: #ffffff;
+}
+
+/* -------------------------
+   FUTURISTIC MICRO-DETAILS
+------------------------- */
+
+/* Soft animated background noise */
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+        linear-gradient(
+            rgba(255, 255, 255, 0.02) 1px,
+            transparent 1px
+        );
+    background-size: 3px 3px;
+    opacity: 0.15;
+    z-index: 1;
+}
+
+/* -------------------------
+   END OF PREMIUM CSS
+------------------------- */
