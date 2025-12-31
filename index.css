@@ -284,3 +284,27 @@ p:last-of-type {
 /* ============================================================
    END OF PREMIUM CONTAINER-BASED FUTURISTIC CSS
    ============================================================ */
+
+/* ============================================================
+   CENTER TITLE & LAST UPDATED TEXT
+   ============================================================ */
+
+/* Center the main Privacy Policy title text */
+h1 {
+    text-align: center;
+}
+
+/* Center ONLY the "Last updated" container text */
+p:last-of-type {
+    text-align: center;
+}
+
+/* Optional: tighten letter spacing for centered legal footer */
+p:last-of-type strong {
+    letter-spacing: 0.05em;
+}
+
+
+
+
+
