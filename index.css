@@ -282,13 +282,14 @@ p:hover::before {
 
 .policy-title {
     position: absolute;
-    top: 36px;
+    top: 50%;
     left: 50%;
-    transform: translate(-50%, 0);
+    transform: translate(-50%, -50%);
     z-index: 2;
     text-align: center;
     pointer-events: none;
 }
+
 
 
 .policy-title span {
