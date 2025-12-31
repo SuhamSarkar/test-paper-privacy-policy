@@ -1,7 +1,7 @@
 /* ============================================================
-   FUTURISTIC PREMIUM PRIVACY POLICY UI
-   Author: Custom Ultra-Premium Styling
-   Theme: Dark / Metallic / Glass / Cyber
+   HORIZONTAL FUTURISTIC POLICY UI
+   Style: Dense / Dark / Architectural
+   Layout: Horizontal Rail
    ============================================================ */
 
 
@@ -9,43 +9,29 @@
    ROOT VARIABLES
 ------------------------- */
 :root {
-    --bg-main: #07090d;
-    --bg-secondary: #0b0f17;
-    --bg-glass: rgba(255, 255, 255, 0.04);
-    --bg-glass-strong: rgba(255, 255, 255, 0.08);
+    --bg-main: #05070b;
+    --bg-panel: rgba(255, 255, 255, 0.045);
 
-    --accent-primary: #4cc9f0;
-    --accent-secondary: #8b5cf6;
-    --accent-tertiary: #22d3ee;
+    --accent-cyan: #38bdf8;
+    --accent-violet: #7c3aed;
 
-    --text-main: #e6e9ef;
-    --text-muted: #a1a6b2;
+    --text-main: #e5e7eb;
+    --text-dim: #9ca3af;
 
-    --border-soft: rgba(255, 255, 255, 0.12);
-    --border-strong: rgba(255, 255, 255, 0.25);
+    --border-soft: rgba(255, 255, 255, 0.14);
 
-    --shadow-soft: 0 10px 40px rgba(0, 0, 0, 0.6);
-    --shadow-strong: 0 30px 80px rgba(0, 0, 0, 0.8);
+    --radius: 16px;
 
-    --radius-small: 12px;
-    --radius-medium: 20px;
-    --radius-large: 28px;
+    --blur: blur(14px);
 
-    --blur-light: blur(10px);
-    --blur-heavy: blur(20px);
-
-    --transition-fast: 0.25s ease;
-    --transition-medium: 0.45s cubic-bezier(0.4, 0, 0.2, 1);
-    --transition-slow: 0.8s ease;
+    --shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
 }
 
 
 /* -------------------------
-   GLOBAL RESET
+   RESET
 ------------------------- */
-*,
-*::before,
-*::after {
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -53,92 +39,40 @@
 
 
 /* -------------------------
-   BODY BASE
+   BODY
 ------------------------- */
 body {
     min-height: 100vh;
-    font-family: "Inter", "SF Pro Display", system-ui, sans-serif;
+    font-family: "Inter", system-ui, sans-serif;
     background:
-        radial-gradient(circle at top left, rgba(139, 92, 246, 0.15), transparent 40%),
-        radial-gradient(circle at bottom right, rgba(76, 201, 240, 0.12), transparent 45%),
-        linear-gradient(180deg, #05060a, #0a0e18 60%, #05060a);
+        radial-gradient(circle at top right, rgba(124, 58, 237, 0.15), transparent 40%),
+        linear-gradient(180deg, #03050a, #0a0d16);
     color: var(--text-main);
-    overflow-x: hidden;
-    letter-spacing: 0.3px;
-}
-
-
-/* -------------------------
-   PAGE HEADER
-------------------------- */
-.page-header {
-    position: relative;
-    padding: 80px 24px 60px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-
-/* -------------------------
-   TITLE CONTAINER
-------------------------- */
-.policy-title {
-    position: relative;
-    padding: 22px 42px;
-    border-radius: var(--radius-large);
-    background:
-        linear-gradient(
-            135deg,
-            rgba(255, 255, 255, 0.08),
-            rgba(255, 255, 255, 0.02)
-        );
-    backdrop-filter: var(--blur-heavy);
-    border: 1px solid var(--border-soft);
-    box-shadow: var(--shadow-soft);
     overflow: hidden;
 }
 
 
 /* -------------------------
-   TITLE TEXT
+   HEADER
 ------------------------- */
-.policy-title span {
-    font-size: clamp(1.8rem, 4vw, 2.6rem);
-    font-weight: 600;
-    letter-spacing: 0.4em;
-    color: transparent;
-    background-image:
-        linear-gradient(
-            120deg,
-            var(--accent-primary),
-            var(--accent-secondary),
-            var(--accent-tertiary)
-        );
-    background-clip: text;
-    -webkit-background-clip: text;
-    text-align: center;
+.page-header {
+    padding: 36px 48px;
+    border-bottom: 1px solid var(--border-soft);
 }
 
 
 /* -------------------------
-   TITLE GLOW EFFECT
+   TITLE
 ------------------------- */
-.policy-title::before {
-    content: "";
-    position: absolute;
-    inset: -2px;
+.policy-title span {
+    font-size: 1.6rem;
+    letter-spacing: 0.45em;
+    font-weight: 500;
+    color: transparent;
     background:
-        linear-gradient(
-            120deg,
-            transparent,
-            rgba(76, 201, 240, 0.35),
-            rgba(139, 92, 246, 0.35),
-            transparent
-        );
-    opacity: 0.6;
-    filter: blur(18px);
-    z-index: -1;
+        linear-gradient(90deg, var(--accent-cyan), var(--accent-violet));
+    background-clip: text;
+    -webkit-background-clip: text;
 }
 
 
@@ -146,68 +80,73 @@ body {
    MAIN CONTAINER
 ------------------------- */
 .policy-container {
-    max-width: 980px;
-    margin: 0 auto;
-    padding: 0 24px 120px;
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 36px;
+    height: calc(100vh - 120px);
+    display: flex;
+    flex-direction: row;
+    gap: 28px;
+    padding: 40px 48px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
 }
 
 
 /* -------------------------
-   POLICY CARD BASE
+   SCROLLBAR
+------------------------- */
+.policy-container::-webkit-scrollbar {
+    height: 6px;
+}
+
+.policy-container::-webkit-scrollbar-thumb {
+    background: linear-gradient(
+        90deg,
+        var(--accent-cyan),
+        var(--accent-violet)
+    );
+    border-radius: 10px;
+}
+
+
+/* -------------------------
+   POLICY CARD
 ------------------------- */
 .policy-card {
-    position: relative;
-    padding: 36px 40px;
-    border-radius: var(--radius-medium);
-    background:
-        linear-gradient(
-            160deg,
-            rgba(255, 255, 255, 0.08),
-            rgba(255, 255, 255, 0.02)
-        );
-    backdrop-filter: var(--blur-light);
+    min-width: 360px;
+    max-width: 420px;
+    height: 100%;
+    padding: 28px 30px;
+    background: var(--bg-panel);
+    backdrop-filter: var(--blur);
     border: 1px solid var(--border-soft);
-    box-shadow: var(--shadow-soft);
-    transition:
-        transform var(--transition-medium),
-        box-shadow var(--transition-medium),
-        border var(--transition-medium);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    display: flex;
+    align-items: center;
+    scroll-snap-align: start;
+    position: relative;
 }
 
 
 /* -------------------------
-   CARD HOVER
-------------------------- */
-.policy-card:hover {
-    transform: translateY(-6px) scale(1.01);
-    box-shadow: var(--shadow-strong);
-    border-color: var(--border-strong);
-}
-
-
-/* -------------------------
-   CARD GLOW STRIP
+   CARD DIVIDER LINE
 ------------------------- */
 .policy-card::before {
     content: "";
     position: absolute;
+    top: 14%;
     left: 0;
-    top: 20%;
     width: 3px;
-    height: 60%;
-    border-radius: 6px;
+    height: 72%;
     background:
         linear-gradient(
             180deg,
             transparent,
-            var(--accent-primary),
-            var(--accent-secondary),
+            var(--accent-cyan),
+            var(--accent-violet),
             transparent
         );
-    opacity: 0.8;
+    border-radius: 3px;
 }
 
 
@@ -215,18 +154,9 @@ body {
    CARD TEXT
 ------------------------- */
 .policy-card p {
-    font-size: 1.05rem;
-    line-height: 1.85;
+    font-size: 0.95rem;
+    line-height: 1.75;
     color: var(--text-main);
-    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.4);
-}
-
-
-/* -------------------------
-   SUBTLE TEXT FADE
-------------------------- */
-.policy-card p::selection {
-    background: rgba(139, 92, 246, 0.35);
 }
 
 
@@ -234,14 +164,9 @@ body {
    FOOTER CARD
 ------------------------- */
 .policy-footer {
+    justify-content: center;
     text-align: center;
-    padding: 28px 32px;
-    background:
-        linear-gradient(
-            180deg,
-            rgba(255, 255, 255, 0.06),
-            rgba(255, 255, 255, 0.015)
-        );
+    min-width: 260px;
 }
 
 
@@ -249,63 +174,42 @@ body {
    FOOTER TEXT
 ------------------------- */
 .policy-footer p {
-    font-size: 0.9rem;
-    color: var(--text-muted);
-    letter-spacing: 0.25em;
+    font-size: 0.75rem;
+    letter-spacing: 0.3em;
+    color: var(--text-dim);
     text-transform: uppercase;
 }
 
 
 /* -------------------------
-   RESPONSIVE ADJUSTMENTS
+   HOVER INTERACTION
+------------------------- */
+.policy-card {
+    transition: transform 0.35s ease, border 0.35s ease;
+}
+
+.policy-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+
+/* -------------------------
+   MOBILE FALLBACK
 ------------------------- */
 @media (max-width: 768px) {
-
-    .page-header {
-        padding: 60px 20px 40px;
+    body {
+        overflow: auto;
     }
 
-    .policy-title {
-        padding: 18px 28px;
+    .policy-container {
+        flex-direction: column;
+        height: auto;
+        overflow-x: hidden;
     }
 
     .policy-card {
-        padding: 28px 26px;
+        min-width: unset;
+        max-width: unset;
     }
-
-    .policy-card p {
-        font-size: 1rem;
-    }
-}
-
-
-/* -------------------------
-   MICRO-DETAILS
-------------------------- */
-.policy-card::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    border-radius: inherit;
-    background:
-        linear-gradient(
-            120deg,
-            transparent 20%,
-            rgba(255, 255, 255, 0.05),
-            transparent 80%
-        );
-    opacity: 0;
-    transition: opacity var(--transition-slow);
-}
-
-.policy-card:hover::after {
-    opacity: 1;
-}
-
-
-/* -------------------------
-   SCROLL SMOOTHNESS
-------------------------- */
-html {
-    scroll-behavior: smooth;
 }
