@@ -282,18 +282,41 @@ p:hover::before {
 
 .policy-title {
     position: absolute;
-    top: 28px;
+    top: 36px;
     left: 50%;
-    transform: translateX(-50%);
+    transform: translate(-50%, 0);
     z-index: 2;
+    text-align: center;
+    pointer-events: none;
 }
 
+
 .policy-title span {
-    font-size: 0.95rem;
-    letter-spacing: 4px;
-    font-weight: 600;
-    padding: 6px 18px;
+    font-size: 1.05rem;
+    letter-spacing: 6px;
+    font-weight: 700;
+    padding: 10px 26px;
     border-radius: 999px;
+
+    background: linear-gradient(
+        120deg,
+        #4cc9f0,
+        #9d4edd,
+        #4cc9f0
+    );
+    background-size: 200% auto;
+
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+
+    text-shadow:
+        0 0 12px rgba(76, 201, 240, 0.45),
+        0 0 28px rgba(157, 78, 221, 0.35);
+
+    animation: titleGlow 6s linear infinite;
+}
+
 
     background: linear-gradient(
         90deg,
@@ -329,3 +352,11 @@ p:hover::before {
         0 0 20px var(--accent-glow);
 }
 
+@keyframes titleGlow {
+    0% {
+        background-position: 0% center;
+    }
+    100% {
+        background-position: 200% center;
+    }
+}
