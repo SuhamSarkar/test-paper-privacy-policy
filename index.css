@@ -1,11 +1,10 @@
 /* =========================================================
-   GLOBAL RESET & ROOT VARIABLES
+   ROOT VARIABLES
    ========================================================= */
 
 :root {
-    --bg-main: #07090d;
-    --bg-panel: rgba(18, 22, 32, 0.75);
-    --bg-glass: rgba(255, 255, 255, 0.04);
+    --bg-main: #05070b;
+    --panel-bg: rgba(18, 22, 32, 0.75);
 
     --text-main: #e6e9ef;
     --text-muted: #a9b0c2;
@@ -13,23 +12,14 @@
 
     --accent-primary: #4cc9f0;
     --accent-secondary: #9d4edd;
-    --accent-glow: rgba(76, 201, 240, 0.35);
 
     --border-soft: rgba(255, 255, 255, 0.08);
     --border-strong: rgba(255, 255, 255, 0.18);
 
-    --shadow-soft: 0 8px 30px rgba(0, 0, 0, 0.55);
-    --shadow-strong: 0 20px 60px rgba(0, 0, 0, 0.85);
+    --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.6);
+    --shadow-strong: 0 30px 80px rgba(0, 0, 0, 0.85);
 
-    --radius-sm: 8px;
-    --radius-md: 16px;
     --radius-lg: 28px;
-
-    --blur-strong: blur(18px);
-    --blur-soft: blur(10px);
-
-    --transition-fast: 0.25s ease;
-    --transition-medium: 0.45s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* =========================================================
@@ -49,6 +39,10 @@ html {
     scroll-behavior: smooth;
 }
 
+/* =========================================================
+   BODY / BACKGROUND
+   ========================================================= */
+
 body {
     min-height: 100vh;
     background:
@@ -57,190 +51,156 @@ body {
         linear-gradient(180deg, #05070b 0%, #090c12 100%);
     color: var(--text-main);
     font-family: "Inter", "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-    line-height: 1.8;
+    line-height: 1.75;
     letter-spacing: 0.3px;
-    padding: 80px 20px;
+    padding: 60px 20px 80px;
 }
 
 /* =========================================================
-   MAIN CONTAINER
+   PAGE TITLE (BIG, FUTURISTIC)
    ========================================================= */
 
-body > * {
-    max-width: 920px;
-    margin: 0 auto;
-}
-
-body {
+.page-header {
     display: flex;
     justify-content: center;
+    margin-bottom: 80px;
 }
 
-body > div,
-body > main,
-body {
-    width: 100%;
-}
-
-/* =========================================================
-   GLASS PANEL WRAPPER
-   ========================================================= */
-
-body > h1,
-body > p {
-    background: linear-gradient(
-        180deg,
-        rgba(255, 255, 255, 0.05),
-        rgba(255, 255, 255, 0.01)
-    );
-    backdrop-filter: var(--blur-strong);
-    -webkit-backdrop-filter: var(--blur-strong);
-    border: 1px solid var(--border-soft);
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-soft);
-}
-
-/* =========================================================
-   TITLE
-   ========================================================= */
-
-h1 {
-    padding: 40px 48px 28px;
-    margin-bottom: 24px;
-    font-size: 2.6rem;
-    font-weight: 700;
-    letter-spacing: 1px;
+.policy-title {
+    position: relative;
     text-align: center;
+    pointer-events: none;
+}
 
-    background:
-        linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+.policy-title span {
+    font-size: clamp(3rem, 6vw, 4.8rem);
+    font-weight: 900;
+    letter-spacing: 12px;
+    text-transform: uppercase;
+
+    background: linear-gradient(
+        120deg,
+        var(--accent-primary),
+        var(--accent-secondary),
+        var(--accent-primary)
+    );
+    background-size: 300% auto;
+
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
 
-    position: relative;
+    text-shadow:
+        0 0 20px rgba(76, 201, 240, 0.6),
+        0 0 50px rgba(157, 78, 221, 0.45),
+        0 0 90px rgba(157, 78, 221, 0.25);
+
+    animation: titleGlow 8s linear infinite;
 }
 
-h1::after {
+/* glowing divider under title */
+.policy-title::after {
     content: "";
     display: block;
-    width: 80px;
+    width: 140px;
     height: 3px;
-    margin: 18px auto 0;
+    margin: 24px auto 0;
     background: linear-gradient(
         90deg,
         var(--accent-primary),
         var(--accent-secondary)
     );
-    border-radius: 2px;
-    box-shadow: 0 0 18px var(--accent-glow);
+    border-radius: 3px;
+    box-shadow:
+        0 0 14px rgba(76, 201, 240, 0.6),
+        0 0 28px rgba(157, 78, 221, 0.45);
+}
+
+@keyframes titleGlow {
+    0% { background-position: 0% center; }
+    100% { background-position: 300% center; }
 }
 
 /* =========================================================
-   PARAGRAPHS
+   POLICY CONTAINER
    ========================================================= */
 
-p {
-    padding: 26px 48px;
-    margin-bottom: 20px;
+.policy-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    gap: 22px;
+    align-items: stretch;
+}
+
+/* =========================================================
+   POLICY CARDS
+   ========================================================= */
+
+.policy-card {
+    flex: 1;
+    background: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.06),
+        rgba(255, 255, 255, 0.015)
+    );
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border: 1px solid var(--border-soft);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-soft);
+
+    padding: 32px 28px;
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.policy-card p {
     font-size: 1.05rem;
     color: var(--text-main);
-    position: relative;
-    overflow: hidden;
 }
 
-/* subtle inner glow */
-p::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background:
-        linear-gradient(
-            120deg,
-            transparent,
-            rgba(255, 255, 255, 0.03),
-            transparent
-        );
-    opacity: 0.4;
-    pointer-events: none;
+/* hover polish */
+.policy-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-strong);
+    border-color: var(--border-strong);
 }
 
-/* =========================================================
-   EMPHASIS STYLING
-   ========================================================= */
-
-p strong {
-    color: var(--accent-primary);
-    font-weight: 600;
-}
-
-p em {
-    color: var(--accent-secondary);
-    font-style: normal;
-}
-
-/* =========================================================
-   LAST UPDATED LINE
-   ========================================================= */
-
-p:last-of-type {
-    margin-top: 40px;
+/* footer card */
+.policy-footer p {
     text-align: center;
     font-size: 0.95rem;
-    color: var(--text-dim);
     letter-spacing: 1px;
-    background: none;
-    border: none;
-    box-shadow: none;
+    color: var(--text-dim);
 }
 
 /* =========================================================
-   HOVER MICRO-INTERACTIONS
+   RESPONSIVE (STACK ON MOBILE)
    ========================================================= */
 
-p:hover {
-    border-color: var(--border-strong);
-    transform: translateY(-2px);
-    transition: var(--transition-medium);
-}
-
-p:hover::before {
-    opacity: 0.7;
-}
-
-/* =========================================================
-   RESPONSIVE DESIGN
-   ========================================================= */
-
-@media (max-width: 768px) {
-    body {
-        padding: 50px 14px;
+@media (max-width: 1024px) {
+    .policy-container {
+        flex-direction: column;
+        max-width: 900px;
     }
 
-    h1 {
-        font-size: 2.1rem;
-        padding: 32px 28px 24px;
-    }
-
-    p {
-        padding: 22px 26px;
-        font-size: 1rem;
+    .policy-card {
+        padding: 28px 26px;
     }
 }
 
-@media (max-width: 420px) {
-    h1 {
-        font-size: 1.85rem;
+@media (max-width: 480px) {
+    .policy-title span {
+        letter-spacing: 6px;
     }
 
-    p {
-        padding: 20px 22px;
-        line-height: 1.7;
+    .policy-container {
+        gap: 18px;
     }
 }
 
 /* =========================================================
-   SCROLLBAR (DESKTOP PREMIUM TOUCH)
+   SCROLLBAR
    ========================================================= */
 
 ::-webkit-scrollbar {
@@ -265,87 +225,6 @@ p:hover::before {
    ========================================================= */
 
 ::selection {
-    background: rgba(76, 201, 240, 0.25);
+    background: rgba(76, 201, 240, 0.3);
     color: #ffffff;
-}
-
-
-
-
-/* =========================================================
-   FUTURISTIC POLICY TITLE (FIRST CARD ONLY)
-   ========================================================= */
-
-.policy-intro {
-    position: relative;
-    padding-top: 90px; /* space reserved for title */
-}
-
-
-.policy-title.page-title {
-    position: sticky;
-    top: 24px;
-    z-index: 50;
-    text-align: center;
-    margin-bottom: 40px;
-    pointer-events: none;
-}
-
-
-
-
-.policy-title span {
-    font-size: 1.05rem;
-    letter-spacing: 6px;
-    font-weight: 700;
-    padding: 10px 26px;
-    border-radius: 999px;
-
-    background: linear-gradient(
-        120deg,
-        #4cc9f0,
-        #9d4edd,
-        #4cc9f0
-    );
-    background-size: 200% auto;
-
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-
-    text-shadow:
-        0 0 12px rgba(76, 201, 240, 0.45),
-        0 0 28px rgba(157, 78, 221, 0.35);
-
-    animation: titleGlow 6s linear infinite;
-}
-
-
-/* glowing underline behind text */
-.policy-title::after {
-    content: "";
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    width: 90px;
-    height: 2px;
-    transform: translate(-50%, 50%);
-    background: linear-gradient(
-        90deg,
-        var(--accent-primary),
-        var(--accent-secondary)
-    );
-    border-radius: 2px;
-    box-shadow:
-        0 0 10px var(--accent-glow),
-        0 0 20px var(--accent-glow);
-}
-
-@keyframes titleGlow {
-    0% {
-        background-position: 0% center;
-    }
-    100% {
-        background-position: 200% center;
-    }
 }
