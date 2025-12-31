@@ -53,11 +53,10 @@ body {
     font-family: "Inter", "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
     line-height: 1.75;
     letter-spacing: 0.3px;
-    padding: 60px 20px 80px;
 }
 
 /* =========================================================
-   PAGE TITLE (BIG, FUTURISTIC)
+   HERO TITLE (CENTERED CORRECTLY)
    ========================================================= */
 
 .page-header {
@@ -65,15 +64,12 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    pointer-events: none;
 }
-
 
 .policy-title {
     position: relative;
     text-align: center;
 }
-
 
 .policy-title span {
     font-size: clamp(3rem, 6vw, 4.8rem);
@@ -101,13 +97,13 @@ body {
     animation: titleGlow 8s linear infinite;
 }
 
-/* glowing divider under title */
+/* line directly under text */
 .policy-title::after {
     content: "";
     display: block;
     width: 160px;
     height: 3px;
-    margin: 18px auto 0; /* directly under text */
+    margin: 18px auto 0;
     background: linear-gradient(
         90deg,
         var(--accent-primary),
@@ -119,35 +115,39 @@ body {
         0 0 28px rgba(157, 78, 221, 0.45);
 }
 
-
 @keyframes titleGlow {
     0% { background-position: 0% center; }
     100% { background-position: 300% center; }
 }
 
 /* =========================================================
-   POLICY CONTAINER
+   POLICY CONTENT SECTION
+   ========================================================= */
+
+.policy-section {
+    padding: 80px 20px 100px;
+}
+
+/* =========================================================
+   POLICY CONTAINER (HORIZONTAL ROW)
    ========================================================= */
 
 .policy-container {
-    width: 100%;
     max-width: 1600px;
     margin: 0 auto;
     display: flex;
-    flex-direction: row;
     gap: 28px;
+    overflow-x: auto;
     align-items: stretch;
-    overflow-x: auto; /* allow horizontal flow */
     padding-bottom: 20px;
 }
 
-
 /* =========================================================
-   POLICY CARDS
+   POLICY CARDS (WIDE, NOT VERTICAL STRIPS)
    ========================================================= */
 
 .policy-card {
-    flex: 0 0 320px; /* fixed horizontal card width */
+    flex: 0 0 360px;
     background: linear-gradient(
         180deg,
         rgba(255, 255, 255, 0.06),
@@ -159,25 +159,27 @@ body {
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-soft);
 
-    padding: 32px 28px;
+    padding: 32px 30px;
     transition: transform 0.35s ease, box-shadow 0.35s ease;
 }
 
 .policy-card p {
     font-size: 1.05rem;
     color: var(--text-main);
-   max-width: 100%;
     word-break: normal;
 }
 
-/* hover polish */
+/* hover */
 .policy-card:hover {
     transform: translateY(-6px);
     box-shadow: var(--shadow-strong);
     border-color: var(--border-strong);
 }
 
-/* footer card */
+/* =========================================================
+   FOOTER CARD TEXT
+   ========================================================= */
+
 .policy-footer p {
     text-align: center;
     font-size: 0.95rem;
@@ -201,7 +203,6 @@ body {
     }
 }
 
-
 @media (max-width: 480px) {
     .policy-title span {
         letter-spacing: 6px;
@@ -218,6 +219,7 @@ body {
 
 ::-webkit-scrollbar {
     width: 10px;
+    height: 10px;
 }
 
 ::-webkit-scrollbar-track {
