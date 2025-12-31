@@ -1,1 +1,270 @@
+/* =========================================================
+   GLOBAL RESET & ROOT VARIABLES
+   ========================================================= */
 
+:root {
+    --bg-main: #07090d;
+    --bg-panel: rgba(18, 22, 32, 0.75);
+    --bg-glass: rgba(255, 255, 255, 0.04);
+
+    --text-main: #e6e9ef;
+    --text-muted: #a9b0c2;
+    --text-dim: #7f8699;
+
+    --accent-primary: #4cc9f0;
+    --accent-secondary: #9d4edd;
+    --accent-glow: rgba(76, 201, 240, 0.35);
+
+    --border-soft: rgba(255, 255, 255, 0.08);
+    --border-strong: rgba(255, 255, 255, 0.18);
+
+    --shadow-soft: 0 8px 30px rgba(0, 0, 0, 0.55);
+    --shadow-strong: 0 20px 60px rgba(0, 0, 0, 0.85);
+
+    --radius-sm: 8px;
+    --radius-md: 16px;
+    --radius-lg: 28px;
+
+    --blur-strong: blur(18px);
+    --blur-soft: blur(10px);
+
+    --transition-fast: 0.25s ease;
+    --transition-medium: 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* =========================================================
+   RESET
+   ========================================================= */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+    background:
+        radial-gradient(1200px 600px at 10% 10%, rgba(76, 201, 240, 0.08), transparent 60%),
+        radial-gradient(900px 500px at 90% 20%, rgba(157, 78, 221, 0.07), transparent 55%),
+        linear-gradient(180deg, #05070b 0%, #090c12 100%);
+    color: var(--text-main);
+    font-family: "Inter", "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    line-height: 1.8;
+    letter-spacing: 0.3px;
+    padding: 80px 20px;
+}
+
+/* =========================================================
+   MAIN CONTAINER
+   ========================================================= */
+
+body > * {
+    max-width: 920px;
+    margin: 0 auto;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+}
+
+body > div,
+body > main,
+body {
+    width: 100%;
+}
+
+/* =========================================================
+   GLASS PANEL WRAPPER
+   ========================================================= */
+
+body > h1,
+body > p {
+    background: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.05),
+        rgba(255, 255, 255, 0.01)
+    );
+    backdrop-filter: var(--blur-strong);
+    -webkit-backdrop-filter: var(--blur-strong);
+    border: 1px solid var(--border-soft);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-soft);
+}
+
+/* =========================================================
+   TITLE
+   ========================================================= */
+
+h1 {
+    padding: 40px 48px 28px;
+    margin-bottom: 24px;
+    font-size: 2.6rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-align: center;
+
+    background:
+        linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+
+    position: relative;
+}
+
+h1::after {
+    content: "";
+    display: block;
+    width: 80px;
+    height: 3px;
+    margin: 18px auto 0;
+    background: linear-gradient(
+        90deg,
+        var(--accent-primary),
+        var(--accent-secondary)
+    );
+    border-radius: 2px;
+    box-shadow: 0 0 18px var(--accent-glow);
+}
+
+/* =========================================================
+   PARAGRAPHS
+   ========================================================= */
+
+p {
+    padding: 26px 48px;
+    margin-bottom: 20px;
+    font-size: 1.05rem;
+    color: var(--text-main);
+    position: relative;
+    overflow: hidden;
+}
+
+/* subtle inner glow */
+p::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(
+            120deg,
+            transparent,
+            rgba(255, 255, 255, 0.03),
+            transparent
+        );
+    opacity: 0.4;
+    pointer-events: none;
+}
+
+/* =========================================================
+   EMPHASIS STYLING
+   ========================================================= */
+
+p strong {
+    color: var(--accent-primary);
+    font-weight: 600;
+}
+
+p em {
+    color: var(--accent-secondary);
+    font-style: normal;
+}
+
+/* =========================================================
+   LAST UPDATED LINE
+   ========================================================= */
+
+p:last-of-type {
+    margin-top: 40px;
+    text-align: center;
+    font-size: 0.95rem;
+    color: var(--text-dim);
+    letter-spacing: 1px;
+    background: none;
+    border: none;
+    box-shadow: none;
+}
+
+/* =========================================================
+   HOVER MICRO-INTERACTIONS
+   ========================================================= */
+
+p:hover {
+    border-color: var(--border-strong);
+    transform: translateY(-2px);
+    transition: var(--transition-medium);
+}
+
+p:hover::before {
+    opacity: 0.7;
+}
+
+/* =========================================================
+   RESPONSIVE DESIGN
+   ========================================================= */
+
+@media (max-width: 768px) {
+    body {
+        padding: 50px 14px;
+    }
+
+    h1 {
+        font-size: 2.1rem;
+        padding: 32px 28px 24px;
+    }
+
+    p {
+        padding: 22px 26px;
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 420px) {
+    h1 {
+        font-size: 1.85rem;
+    }
+
+    p {
+        padding: 20px 22px;
+        line-height: 1.7;
+    }
+}
+
+/* =========================================================
+   SCROLLBAR (DESKTOP PREMIUM TOUCH)
+   ========================================================= */
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #05070b;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(
+        180deg,
+        var(--accent-primary),
+        var(--accent-secondary)
+    );
+    border-radius: 10px;
+}
+
+/* =========================================================
+   SELECTION
+   ========================================================= */
+
+::selection {
+    background: rgba(76, 201, 240, 0.25);
+    color: #ffffff;
+}
