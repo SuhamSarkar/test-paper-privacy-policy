@@ -306,5 +306,18 @@ p:last-of-type strong {
 
 
 
+/* ============================================================
+   AUTHOR NAME HIGHLIGHT
+   ============================================================ */
+
+.author-name {
+    color: #38bdf8; /* premium blue */
+    font-weight: 600;
+    letter-spacing: 0.03em;
+
+    text-shadow:
+        0 0 8px rgba(56, 189, 248, 0.6),
+        0 0 16px rgba(56, 189, 248, 0.35);
+}
 
 
