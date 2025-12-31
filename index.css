@@ -1,313 +1,300 @@
 /* ============================================================
-   FUTURISTIC PREMIUM DARK THEME – PRIVACY POLICY
-   Layout Philosophy:
-   - Title fixed at top center
-   - ALL content flows horizontally (left → right)
-   - Each section behaves like a horizontal panel
-   - Dark, glassy, neon-accented, premium UI
-   - Designed to feel like a high-end SaaS / cyber interface
+   PREMIUM FUTURISTIC DARK CSS (VERTICAL FIXED LAYOUT)
+   Guaranteed vertical stacking – no horizontal drift
    ============================================================ */
 
-
-/* =========================
-   ROOT VARIABLES
-   ========================= */
-:root {
-    --bg-main: #0b0f14;
-    --bg-panel: rgba(20, 26, 34, 0.85);
-    --bg-panel-hover: rgba(26, 34, 44, 0.95);
-
-    --text-primary: #e6ebf2;
-    --text-secondary: #9aa4b2;
-    --text-muted: #6f7a88;
-
-    --accent-primary: #4cc9f0;
-    --accent-secondary: #7c7cff;
-    --accent-glow: rgba(76, 201, 240, 0.45);
-
-    --border-soft: rgba(255, 255, 255, 0.08);
-    --border-strong: rgba(76, 201, 240, 0.35);
-
-    --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.6);
-    --shadow-glow: 0 0 25px rgba(76, 201, 240, 0.15);
-
-    --radius-lg: 22px;
-    --radius-md: 14px;
-
-    --font-main: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
-    --font-mono: "JetBrains Mono", "Fira Code", monospace;
-}
-
-
-/* =========================
-   GLOBAL RESET
-   ========================= */
+/* -------------------------
+   RESET
+------------------------- */
 *,
 *::before,
 *::after {
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
 }
 
-html,
-body {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    height: 100%;
-    overflow-x: auto;
-    overflow-y: hidden;
-    background: radial-gradient(
-        1200px 600px at 20% 20%,
-        #101826,
-        var(--bg-main)
-    );
-    color: var(--text-primary);
-    font-family: var(--font-main);
-    letter-spacing: 0.2px;
+/* -------------------------
+   ROOT VARIABLES
+------------------------- */
+:root {
+    --bg-main: #0a0f1c;
+    --bg-card: rgba(18, 24, 44, 0.85);
+    --bg-card-hover: rgba(24, 32, 64, 0.95);
+
+    --border-soft: rgba(255, 255, 255, 0.08);
+    --border-accent: rgba(70, 200, 255, 0.35);
+
+    --text-main: #e6ebff;
+    --text-secondary: #b8c0e0;
+    --text-muted: #8b93b8;
+
+    --accent-cyan: #46e0ff;
+    --accent-purple: #b388ff;
+
+    --shadow-main: 0 20px 45px rgba(0, 0, 0, 0.55);
+    --shadow-glow: 0 0 40px rgba(70, 200, 255, 0.18);
+
+    --radius-lg: 18px;
+    --radius-md: 14px;
+
+    --transition: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-
-/* =========================
-   BODY AS HORIZONTAL CANVAS
-   ========================= */
+/* -------------------------
+   BODY
+------------------------- */
 body {
-    display: flex;
-    flex-direction: column;
+    min-height: 100vh;
+    font-family: "Inter", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background:
+        radial-gradient(900px 500px at 15% -10%, rgba(70, 200, 255, 0.15), transparent 40%),
+        radial-gradient(900px 500px at 85% 10%, rgba(180, 120, 255, 0.12), transparent 45%),
+        linear-gradient(180deg, #0a0f1c 0%, #060812 100%);
+    color: var(--text-main);
+    line-height: 1.8;
+    overflow-x: hidden;
 }
 
-
-/* =========================
-   TITLE HEADER
-   ========================= */
-h1 {
+/* -------------------------
+   HEADER
+------------------------- */
+.page-header {
     position: sticky;
     top: 0;
-    z-index: 10;
+    z-index: 20;
+    backdrop-filter: blur(16px);
+    background: rgba(10, 14, 30, 0.85);
+    border-bottom: 1px solid var(--border-soft);
+}
 
-    margin: 0;
-    padding: 32px 40px;
-
-    font-size: 2.8rem;
-    font-weight: 700;
-    letter-spacing: 1.2px;
-    text-transform: uppercase;
-
+.policy-title {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 28px 20px;
     text-align: center;
+}
+
+.policy-title span {
+    font-size: clamp(1.6rem, 3vw, 2.4rem);
+    font-weight: 700;
+    letter-spacing: 0.4em;
+    color: var(--accent-cyan);
+    text-shadow:
+        0 0 14px rgba(70, 200, 255, 0.45),
+        0 0 40px rgba(70, 200, 255, 0.2);
+}
+
+/* -------------------------
+   MAIN CONTAINER
+   (IMPORTANT FIX)
+------------------------- */
+.policy-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 64px 20px 100px;
+
+    /* FORCE VERTICAL FLOW */
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+/* -------------------------
+   POLICY CARD
+------------------------- */
+.policy-card {
+    width: 100%;
+    display: block;
 
     background: linear-gradient(
         180deg,
-        rgba(11, 15, 20, 0.98),
-        rgba(11, 15, 20, 0.85)
-    );
-    backdrop-filter: blur(12px);
-
-    border-bottom: 1px solid var(--border-soft);
-
-    color: var(--text-primary);
-    text-shadow: 0 0 25px var(--accent-glow);
-}
-
-
-/* =========================
-   HORIZONTAL CONTENT STRIP
-   ========================= */
-body > *:not(h1) {
-    flex: 0 0 auto;
-}
-
-body {
-    padding-bottom: 20px;
-}
-
-
-/* =========================
-   SECTION PANELS (H2 BLOCKS)
-   ========================= */
-h2 {
-    flex: 0 0 auto;
-    min-width: 520px;
-
-    margin: 40px 20px 20px 40px;
-    padding: 26px 28px;
-
-    background: linear-gradient(
-        145deg,
-        rgba(30, 40, 55, 0.9),
-        rgba(18, 24, 34, 0.9)
+        rgba(22, 28, 52, 0.85),
+        rgba(14, 18, 36, 0.95)
     );
 
     border-radius: var(--radius-lg);
+    padding: 32px 34px;
     border: 1px solid var(--border-soft);
+    box-shadow: var(--shadow-main);
 
-    font-size: 1.35rem;
-    font-weight: 600;
-    letter-spacing: 0.6px;
-
-    color: var(--accent-primary);
-
-    box-shadow: var(--shadow-soft), var(--shadow-glow);
-
-    transition: transform 0.35s ease, box-shadow 0.35s ease;
-}
-
-h2:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.7),
-                0 0 35px var(--accent-glow);
-}
-
-
-/* =========================
-   CONTENT CONTAINER
-   ========================= */
-p,
-ul {
-    min-width: 520px;
-    max-width: 680px;
-
-    margin: 0 20px 40px 40px;
-    padding: 28px 32px;
-
-    background: var(--bg-panel);
-    border-radius: var(--radius-md);
-    border: 1px solid var(--border-soft);
-
-    box-shadow: var(--shadow-soft);
-
-    color: var(--text-secondary);
-    font-size: 1rem;
-    line-height: 1.75;
-
-    transition: background 0.3s ease, transform 0.3s ease;
-}
-
-p:hover,
-ul:hover {
-    background: var(--bg-panel-hover);
-    transform: translateY(-4px);
-}
-
-
-/* =========================
-   LIST STYLING
-   ========================= */
-ul {
-    list-style: none;
-    padding-left: 34px;
-}
-
-ul li {
     position: relative;
-    padding-left: 26px;
-    margin-bottom: 14px;
-    color: var(--text-primary);
+    overflow: hidden;
+
+    transition:
+        transform var(--transition),
+        box-shadow var(--transition),
+        border var(--transition),
+        background var(--transition);
 }
 
-ul li::before {
+/* Glow edge */
+.policy-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background:
+        linear-gradient(
+            120deg,
+            transparent,
+            rgba(70, 200, 255, 0.35),
+            transparent
+        );
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity var(--transition);
+}
+
+/* Hover */
+.policy-card:hover {
+    transform: translateY(-6px);
+    background: linear-gradient(
+        180deg,
+        rgba(28, 36, 72, 0.95),
+        rgba(18, 24, 52, 0.98)
+    );
+    border-color: var(--border-accent);
+    box-shadow:
+        0 30px 70px rgba(0, 0, 0, 0.65),
+        var(--shadow-glow);
+}
+
+.policy-card:hover::before {
+    opacity: 1;
+}
+
+/* -------------------------
+   TEXT
+------------------------- */
+.policy-card p {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    margin-bottom: 18px;
+}
+
+.policy-card p:last-child {
+    margin-bottom: 0;
+}
+
+.policy-card strong {
+    color: var(--text-main);
+}
+
+/* -------------------------
+   HEADINGS
+------------------------- */
+.policy-card h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-main);
+    margin-bottom: 18px;
+    padding-left: 14px;
+    position: relative;
+}
+
+.policy-card h3::before {
     content: "";
     position: absolute;
     left: 0;
-    top: 10px;
-    width: 10px;
-    height: 10px;
-
+    top: 0.15em;
+    width: 4px;
+    height: 1.2em;
     background: linear-gradient(
-        135deg,
-        var(--accent-primary),
-        var(--accent-secondary)
+        180deg,
+        var(--accent-cyan),
+        var(--accent-purple)
     );
-    border-radius: 50%;
-    box-shadow: 0 0 10px var(--accent-glow);
+    border-radius: 2px;
+    box-shadow: 0 0 12px rgba(70, 200, 255, 0.6);
 }
 
-
-/* =========================
-   HORIZONTAL FLOW LOGIC
-   ========================= */
-hr {
-    display: none;
+/* -------------------------
+   FOOTER CARD
+------------------------- */
+.policy-footer {
+    text-align: center;
+    background: linear-gradient(
+        180deg,
+        rgba(20, 26, 50, 0.95),
+        rgba(12, 16, 34, 1)
+    );
 }
 
-body {
-    flex-direction: row;
-    align-items: flex-start;
+.policy-footer p {
+    font-size: 0.95rem;
+    color: var(--text-muted);
 }
 
+/* -------------------------
+   RESPONSIVE
+------------------------- */
+@media (max-width: 768px) {
+    .policy-container {
+        padding: 48px 16px 80px;
+        gap: 26px;
+    }
 
-/* =========================
-   STRONG TEXT
-   ========================= */
-strong {
-    color: var(--text-primary);
-    font-weight: 600;
-    text-shadow: 0 0 8px rgba(255, 255, 255, 0.08);
+    .policy-card {
+        padding: 26px 22px;
+        border-radius: var(--radius-md);
+    }
+
+    .policy-card h3 {
+        font-size: 1.15rem;
+    }
+
+    .policy-card p {
+        font-size: 0.95rem;
+    }
 }
 
-
-/* =========================
-   LAST UPDATED FOOTER
-   ========================= */
-p strong {
-    color: var(--accent-primary);
-}
-
-
-/* =========================
-   SCROLLBAR – FUTURISTIC
-   ========================= */
+/* -------------------------
+   SCROLLBAR
+------------------------- */
 ::-webkit-scrollbar {
-    height: 10px;
+    width: 10px;
 }
 
 ::-webkit-scrollbar-track {
-    background: rgba(10, 14, 20, 0.9);
+    background: #060812;
 }
 
 ::-webkit-scrollbar-thumb {
     background: linear-gradient(
-        90deg,
-        var(--accent-primary),
-        var(--accent-secondary)
+        180deg,
+        var(--accent-cyan),
+        var(--accent-purple)
     );
-    border-radius: 20px;
+    border-radius: 10px;
 }
 
-::-webkit-scrollbar-thumb:hover {
-    background: linear-gradient(
-        90deg,
-        #6fe3ff,
-        #9a9aff
-    );
+/* -------------------------
+   SELECTION
+------------------------- */
+::selection {
+    background: rgba(70, 200, 255, 0.35);
+    color: #ffffff;
 }
 
-
-/* =========================
-   RESPONSIVE SAFETY
-   ========================= */
-@media (max-height: 700px) {
-    p,
-    ul {
-        font-size: 0.95rem;
-    }
-
-    h1 {
-        font-size: 2.2rem;
-    }
+/* -------------------------
+   SUBTLE BACKGROUND NOISE
+------------------------- */
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+        linear-gradient(
+            rgba(255, 255, 255, 0.02) 1px,
+            transparent 1px
+        );
+    background-size: 3px 3px;
+    opacity: 0.12;
+    z-index: 1;
 }
 
-@media (max-width: 900px) {
-    body {
-        flex-direction: column;
-        overflow-x: hidden;
-        overflow-y: auto;
-    }
-
-    p,
-    ul,
-    h2 {
-        min-width: auto;
-        max-width: 90%;
-        margin-left: auto;
-        margin-right: auto;
-    }
-}
+/* ============================================================
+   END – VERTICAL, PREMIUM, FUTURISTIC DARK
+   ============================================================ */
