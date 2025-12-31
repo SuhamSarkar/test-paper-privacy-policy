@@ -61,16 +61,19 @@ body {
    ========================================================= */
 
 .page-header {
+    min-height: 100vh;
     display: flex;
+    align-items: center;
     justify-content: center;
-    margin-bottom: 80px;
+    pointer-events: none;
 }
+
 
 .policy-title {
     position: relative;
     text-align: center;
-    pointer-events: none;
 }
+
 
 .policy-title span {
     font-size: clamp(3rem, 6vw, 4.8rem);
@@ -102,9 +105,9 @@ body {
 .policy-title::after {
     content: "";
     display: block;
-    width: 140px;
+    width: 160px;
     height: 3px;
-    margin: 24px auto 0;
+    margin: 18px auto 0; /* directly under text */
     background: linear-gradient(
         90deg,
         var(--accent-primary),
@@ -115,6 +118,7 @@ body {
         0 0 14px rgba(76, 201, 240, 0.6),
         0 0 28px rgba(157, 78, 221, 0.45);
 }
+
 
 @keyframes titleGlow {
     0% { background-position: 0% center; }
@@ -131,6 +135,8 @@ body {
     display: flex;
     gap: 22px;
     align-items: stretch;
+    margin-top: -20vh;
+
 }
 
 /* =========================================================
